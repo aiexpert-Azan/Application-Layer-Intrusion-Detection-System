@@ -1,0 +1,27 @@
+# env
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# data / artifacts
+data/
+datasets/
+**/data/
+**/datasets/
+.cache/
+**/.cache/
+wandb/
+**/wandb/
+
+# python/jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# model
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
