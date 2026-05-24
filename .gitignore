@@ -1,0 +1,34 @@
+# env
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# data/artifacts (keep off GitHub)
+data/
+datasets/
+**/data/
+**/datasets/
+artifacts/
+**/artifacts/
+
+# model exports (often large)
+bert_classifier_framework/
+**/bert_classifier_framework/
+
+# caches/logs
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.cache/
+wandb/
+runs/
+logs/
+
+# model binaries
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
