@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+aiosqlite
+chromadb
+PyMuPDF
+pytesseract
+Pillow
+python-multipart
+groq
+python-jose 
+passlib 
+python-dotenv

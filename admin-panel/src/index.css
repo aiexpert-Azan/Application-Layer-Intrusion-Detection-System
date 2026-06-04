@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-card: #f8fafc;
+  --bg-sidebar: #f1f5f9;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --accent-yellow: #eab308;
+  --accent-purple: #a855f7;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+  --font-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-display: 'Georgia', 'Times New Roman', serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(239, 68, 68, 0.16);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+}
+
+.stat-skeleton {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.03));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* === CHANGE 2: BOLD FONTS EVERYWHERE === */
+* {
+  font-weight: 500 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+}
+
+.font-bold, 
+[class*="font-bold"] {
+  font-weight: 800 !important;
+}
+
+/* Stats numbers */
+.text-2xl, .text-3xl, .text-4xl {
+  font-weight: 800 !important;
+}
+
+/* Table content */
+td, th {
+  font-weight: 600 !important;
+}
+
+/* Sidebar client names */
+.sidebar-client-name {
+  font-weight: 700 !important;
+}
+
+/* Badges and labels */
+.badge, span[class*="badge"] {
+  font-weight: 700 !important;
+}
+
+/* Darker card borders */
+.rounded-xl, .rounded-lg, .rounded-2xl {
+  border: 1.5px solid #cbd5e1 !important;
+}
