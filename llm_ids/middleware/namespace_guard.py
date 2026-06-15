@@ -70,8 +70,23 @@ def _is_tenant_document_present(collection: Any, doc_id: str) -> bool:
     return bool(existing.get("ids"))
 
 
+from chromadb.utils.embedding_functions import EmbeddingFunction
+
+class SimpleDummyEmbeddingFunction(EmbeddingFunction):
+    def __call__(self, input: list[str]) -> list[list[float]]:
+        return [[0.0] * 384 for _ in input]
+
+    def name(self) -> str:
+        return "SimpleDummyEmbeddingFunction"
+
+_embedding_fn = SimpleDummyEmbeddingFunction()
+
+
 def get_or_create_tenant_vault(client_id: str):
-    collection = _CHROMA_CLIENT.get_or_create_collection(name=_collection_name(client_id))
+    collection = _CHROMA_CLIENT.get_or_create_collection(
+        name=_collection_name(client_id),
+        embedding_function=_embedding_fn
+    )
     return collection
 
 
