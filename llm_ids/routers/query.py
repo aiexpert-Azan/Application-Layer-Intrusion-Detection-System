@@ -4,19 +4,19 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 
-from llm_ids.database.db import get_logs_by_client, get_stats_by_client, log_attack
-from llm_ids.middleware.auth import get_current_client
-from llm_ids.middleware.file_inspector import inspect_file
-from llm_ids.middleware.llm_handler import get_llm_response
-from llm_ids.middleware.intent_validator import validate_intent
-from llm_ids.middleware.namespace_guard import (
+from database.db import get_logs_by_client, get_stats_by_client, log_attack
+from middleware.auth import get_current_client
+from middleware.file_inspector import inspect_file
+from middleware.llm_handler import get_llm_response
+from middleware.intent_validator import validate_intent
+from middleware.namespace_guard import (
     detect_cross_tenant_attempt,
     get_or_create_tenant_vault,
     query_tenant_vault,
 )
-from llm_ids.middleware.output_filter import filter_output
-from llm_ids.ai_pipeline.inference import classify
-from llm_ids.routers.websocket import broadcast_attack
+from middleware.output_filter import filter_output
+from ai_pipeline.inference import classify
+from routers.websocket import broadcast_attack
 
 
 router = APIRouter()

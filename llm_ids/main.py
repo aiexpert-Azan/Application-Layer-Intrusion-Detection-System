@@ -1,13 +1,18 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(
+    os.path.abspath(__file__)
+))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 import uvicorn
 
-from llm_ids.database.db import init_db
-from llm_ids.routers.query import router as query_router
-from llm_ids.routers.websocket import router as websocket_router
+from database.db import init_db
+from routers.query import router as query_router
+from routers.websocket import router as websocket_router
 
-import os
 print(f"Starting SecureIDS on port: {os.environ.get('PORT', 8000)}")
 print(f"Groq API Key present: {bool(os.environ.get('GROQ_API_KEY'))}")
 

@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from llm_ids.middleware.namespace_guard import (
+from middleware.namespace_guard import (
     get_or_create_tenant_vault,
     add_tenant_document,
     query_tenant_vault,

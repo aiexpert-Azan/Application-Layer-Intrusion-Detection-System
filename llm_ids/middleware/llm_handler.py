@@ -7,7 +7,7 @@ from typing import Any
 from groq import Groq
 from dotenv import load_dotenv
 
-from llm_ids.middleware.output_filter import filter_output
+from middleware.output_filter import filter_output
 
 
 _FALLBACK_RESPONSE = "I'm sorry, I could not process your request right now."

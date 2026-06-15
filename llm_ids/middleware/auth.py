@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from fastapi import Header, HTTPException, status
 
-from llm_ids.database.db import get_client_by_api_key
+from database.db import get_client_by_api_key
 
 
 async def verify_api_key(api_key: str) -> dict[str, Any]:

@@ -1,11 +1,7 @@
 from typing import Any
 
-try:
-    from ai_pipeline.inference import classify
-except ModuleNotFoundError:  # pragma: no cover - fallback for package execution
-    from llm_ids.ai_pipeline.inference import classify
-
-from llm_ids.database.db import log_attack
+from ai_pipeline.inference import classify
+from database.db import log_attack
 
 
 _BLOCKED_LABELS = {
