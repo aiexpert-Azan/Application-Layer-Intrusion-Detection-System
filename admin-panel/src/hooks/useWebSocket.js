@@ -20,7 +20,13 @@ export default function useWebSocket(clientId) {
         return
       }
 
-      const socket = new WebSocket(`ws://localhost:8000/ws/${clientId}`)
+      const WS_URL = import.meta.env.VITE_API_URL
+        ? import.meta.env.VITE_API_URL
+            .replace('https://', 'wss://')
+            .replace('http://', 'ws://')
+        : 'ws://localhost:8000'
+
+      const socket = new WebSocket(`${WS_URL}/ws/${clientId}`)
       socketRef.current = socket
 
       socket.onopen = () => {

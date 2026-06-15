@@ -7,6 +7,10 @@ from llm_ids.database.db import init_db
 from llm_ids.routers.query import router as query_router
 from llm_ids.routers.websocket import router as websocket_router
 
+import os
+print(f"Starting SecureIDS on port: {os.environ.get('PORT', 8000)}")
+print(f"Groq API Key present: {bool(os.environ.get('GROQ_API_KEY'))}")
+
 
 app = FastAPI(
 	title="LLM-IDS Security Gateway",
@@ -16,7 +20,12 @@ app = FastAPI(
 
 app.add_middleware(
 	CORSMiddleware,
-	allow_origins=["http://localhost:3000", "http://localhost:5173"],
+	allow_origins=[
+		"http://localhost:5173",
+		"http://localhost:3000",
+		"https://*.vercel.app",
+		"*"
+	],
 	allow_methods=["*"],
 	allow_headers=["*"],
 )
