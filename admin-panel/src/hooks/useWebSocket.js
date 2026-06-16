@@ -20,11 +20,7 @@ export default function useWebSocket(clientId) {
         return
       }
 
-      const WS_URL = import.meta.env.VITE_API_URL
-        ? import.meta.env.VITE_API_URL
-            .replace('https://', 'wss://')
-            .replace('http://', 'ws://')
-        : 'ws://localhost:8000'
+      const WS_URL = "wss://application-layer-intrusion-detection.onrender.com"
 
       const socket = new WebSocket(`${WS_URL}/ws/${clientId}`)
       socketRef.current = socket

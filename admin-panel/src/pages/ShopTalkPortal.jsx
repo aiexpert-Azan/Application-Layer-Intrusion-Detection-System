@@ -108,7 +108,7 @@ export default function ShopTalkPortal() {
   const sendMessage = async (message) => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/query",
+        "https://application-layer-intrusion-detection.onrender.com/api/query",
         {
           method: "POST",
           mode: "cors",
@@ -204,7 +204,7 @@ export default function ShopTalkPortal() {
       formData.append('file', file)
 
       // 2. Call POST /api/upload
-      const res = await fetch('http://localhost:8000/api/upload', {
+      const res = await fetch('https://application-layer-intrusion-detection.onrender.com/api/upload', {
         method: 'POST',
         headers: {
           'X-API-Key': 'sk-shoptalk-001'
