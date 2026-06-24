@@ -1,6 +1,6 @@
 from typing import Any
 
-from ai_pipeline.inference import classify
+from training.inference import classify
 from database.db import log_attack
 
 

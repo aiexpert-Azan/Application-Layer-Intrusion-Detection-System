@@ -2,7 +2,7 @@ services:
   - type: web
     name: securids-backend
     runtime: python
-    rootDir: llm_ids
+    rootDir: src
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:

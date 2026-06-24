@@ -15,7 +15,7 @@ from middleware.namespace_guard import (
     query_tenant_vault,
 )
 from middleware.output_filter import filter_output
-from ai_pipeline.inference import classify
+from training.inference import classify
 from routers.websocket import broadcast_attack
 
 

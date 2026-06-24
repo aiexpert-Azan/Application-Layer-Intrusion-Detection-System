@@ -1,4 +1,4 @@
-from ai_pipeline.inference import classify
+from training.inference import classify
 
 tests = [
     # SAFE

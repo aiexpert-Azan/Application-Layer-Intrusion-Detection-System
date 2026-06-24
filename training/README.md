@@ -18,7 +18,7 @@ The classifier is exposed via a single Python function `classify(text)` that the
 | 3 | `OUTPUT_INJECTION` | SQL injection or other code/script interference payloads |
 
 ## Files in this module
-ai_pipeline/
+training/
 ├── data_pipeline.py        # Deliverable 1: download, clean, balance, split datasets
 ├── train_bert.ipynb        # Deliverable 2: PyTorch + HF Trainer fine-tuning notebook
 ├── inference.py            # Deliverable 4: classify() inference wrapper
@@ -82,7 +82,7 @@ Resolution (v2): augmented the SAFE class with diverse OpenAssistant root prompt
 ### Installation
 
 ```bash
-cd ai_pipeline
+cd training
 python -m venv venv
 venv\Scripts\activate          # Windows
 # or: source venv/bin/activate # Linux/Mac
@@ -94,9 +94,9 @@ pip install -r requirements.txt
 The model folder is too large for Git. Request the Google Drive link from Monum and:
 
 1. Download the `bert_classifier_framework.zip` from the shared Drive
-2. Extract it into the `ai_pipeline/` folder
+2. Extract it into the `training/` folder
 3. Verify the structure:
-ai_pipeline/bert_classifier_framework/
+training/bert_classifier_framework/
 ├── config.json
 ├── model.safetensors
 ├── tokenizer.json
@@ -144,7 +144,7 @@ Open `train_bert.ipynb` in Google Colab, connect to a T4 GPU runtime, and Run Al
 ## Integration contract (for Azan's FastAPI middleware)
 
 ```python
-from ai_pipeline.inference import classify
+from training.inference import classify
 
 @app.post("/intercept")
 def intercept(payload: TextRequest):
@@ -166,7 +166,7 @@ def intercept(payload: TextRequest):
 
 ## Evaluation artifacts
 
-The following artifacts are saved to the shared Google Drive (`ai_pipeline_data/`):
+The following artifacts are saved to the shared Google Drive (`training_data/`):
 - `training_metrics.json` — final metrics + training config
 - `classification_report.txt` — per-class precision/recall/F1
 - `confusion_matrix.png` — visual confusion matrix on test set

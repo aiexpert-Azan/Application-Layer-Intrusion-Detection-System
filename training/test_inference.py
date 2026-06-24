@@ -3,7 +3,7 @@ test_inference.py
 -----------------
 Sanity tests for the classify() function.
 
-Run from the ai_pipeline directory:
+Run from the training directory:
     python test_inference.py
 
 This is NOT a pytest suite — it's a simple, human-readable test runner
