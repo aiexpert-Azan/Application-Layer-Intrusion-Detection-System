@@ -1,0 +1,25 @@
+# Brings the whole stack up with one command:  docker compose up --build
+# Requires a root .env file containing:  GROQ_API_KEY=your_real_key
+services:
+  backend:
+    build: .                 # uses the root Dockerfile (src/ gateway)
+    image: securids:v1
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./src/database:/app/src/database   # persist SQLite + ChromaDB
+
+  frontend:
+    build:
+      context: ./admin-panel
+      args:
+        # The React app runs in your BROWSER, so it must reach the backend
+        # at localhost:8000 (the published port), NOT the compose service name.
+        VITE_API_URL: http://localhost:8000
+        VITE_WS_URL: ws://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

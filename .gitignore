@@ -1,0 +1,6 @@
+
+# Never commit the real Kubernetes secret
+kubernetes/secret.yaml
+
+# compose env (holds GROQ_API_KEY)
+.env

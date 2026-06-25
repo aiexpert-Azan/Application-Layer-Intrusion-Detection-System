@@ -1,0 +1,11 @@
+# Persistent storage for the SQLite database (ids.db) and the ChromaDB
+# tenant vaults (chroma_store/). Survives pod restarts.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: securids-data
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi

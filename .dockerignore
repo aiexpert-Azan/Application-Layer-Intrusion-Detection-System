@@ -1,0 +1,17 @@
+# Keep the build context small and the image lean.
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.env
+
+# Runtime data — must NOT be baked into the image (use a volume instead).
+src/database/ids.db
+src/database/chroma_store/
+
+# Training side never enters the serving image. The Dockerfile copies the
+# one module it needs (training/inference.py) explicitly.
+training/*
+!training/inference.py
+admin-panel/
+.git/
+.github/

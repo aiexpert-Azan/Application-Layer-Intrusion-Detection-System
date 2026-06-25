@@ -1,0 +1,54 @@
+# CI pipeline: validates the project on every push/PR to main.
+#   - backend: syntax-checks the Python and builds the Docker image
+#   - frontend: installs deps and builds the React app
+# No secrets required — building the image proves it compiles end to end.
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend:
+    name: Backend — build & validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Byte-compiles every file — catches syntax/indentation errors fast,
+      # without needing to install the heavy dependencies.
+      - name: Syntax check
+        run: python -m compileall src training/inference.py
+
+      # Full validation: installs deps + Tesseract and assembles the image,
+      # exactly as it will run in Docker / Kubernetes.
+      - name: Build backend Docker image
+        run: docker build -t securids:ci .
+
+  frontend:
+    name: Frontend — build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        working-directory: admin-panel
+        run: npm ci
+
+      - name: Build the app
+        working-directory: admin-panel
+        run: npm run build

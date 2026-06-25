@@ -1,0 +1,42 @@
+# Runs the SecureIDS gateway container.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: securids-backend
+  labels:
+    app: securids-backend
+spec:
+  replicas: 1                     # MUST stay 1 — SQLite + ChromaDB are single-writer.
+  selector:
+    matchLabels:
+      app: securids-backend
+  template:
+    metadata:
+      labels:
+        app: securids-backend
+    spec:
+      containers:
+        - name: securids-backend
+          image: securids:v1
+          imagePullPolicy: Never            # use the image built inside Minikube
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: securids-secret        # injects GROQ_API_KEY
+          volumeMounts:
+            # Mount ONLY the data subfolder — mounting the whole database/ dir
+            # would hide db.py/__init__.py baked into the image and crash on import.
+            - name: data
+              mountPath: /app/src/database/chroma_store
+              subPath: chroma_store
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: securids-data

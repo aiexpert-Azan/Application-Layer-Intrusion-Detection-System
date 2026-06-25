@@ -1,4 +1,4 @@
-const BASE_URL = "https://application-layer-intrusion-detection.onrender.com"
+const BASE_URL = import.meta.env.VITE_API_URL || "https://application-layer-intrusion-detection.onrender.com"
 
 async function parseResponse(response) {
   const contentType = response.headers.get('content-type') || ''
